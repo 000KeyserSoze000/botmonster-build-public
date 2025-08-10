@@ -38,6 +38,7 @@ import AiStrategyGeneratorModal from './components/AiStrategyGeneratorModal';
 import { StrategyManagerModal } from './components/StrategyManagerModal';
 import HelpArticleModal from './components/HelpArticleModal';
 import { useTranslation } from './hooks/useTranslation';
+import { useUpdater } from './hooks/useUpdater';
 
 const LoadingOverlay: React.FC<{ message: string; progress?: number }> = ({ message, progress }) => (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex flex-col items-center justify-center z-[100] animate-fade-in">
@@ -117,6 +118,7 @@ export default function App() {
   const closeMobilePanels = useAppStore(state => state.closeMobilePanels);
 
   // === HOOKS: Encapsulated business logic ===
+  useUpdater();
   useEffect(() => {
     hydrateFromDB();
   }, [hydrateFromDB]);

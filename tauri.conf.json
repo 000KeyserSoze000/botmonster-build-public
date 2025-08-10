@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "BotMonster",
-    "version": "1.3.0"
+    "version": "1.3.1"
   },
   "tauri": {
     "allowlist": {
@@ -31,6 +31,12 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "updater": {
+        "all": true
+      },
+      "process": {
+        "relaunch": true
       }
     },
     "bundle": {
@@ -70,7 +76,12 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "active": true,
+      "dialog": true,
+      "endpoints": [
+        "https://api.github.com/repos/000KeyserSoze000/botmonsterapp/releases/latest"
+      ],
+      "pubkey": "YOUR_TAURI_UPDATER_PUBKEY_WILL_BE_GENERATED_HERE"
     },
     "windows": [
       {
