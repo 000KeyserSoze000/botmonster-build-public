@@ -9,8 +9,6 @@ jobs:
   release:
     permissions:
       contents: write
-      packages: write
-      actions: write
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -29,9 +27,6 @@ jobs:
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: stable
-          targets: x86_64-unknown-linux-gnu, x86_64-apple-darwin, x86_64-pc-windows-msvc
 
       - name: Install dependencies (Linux)
         if: matrix.os == 'ubuntu-latest'
@@ -42,9 +37,7 @@ jobs:
             libwebkit2gtk-4.0-dev \
             libappindicator3-dev \
             librsvg2-dev \
-            patchelf \
-            libssl-dev \
-            libayatana-appindicator3-dev
+            patchelf
 
       - name: Install dependencies
         run: npm ci
@@ -53,6 +46,9 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          # Décommentez la ligne suivante si vous avez défini un mot de passe pour la clé
+          # TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
         with:
           tagName: ${{ github.ref_name }}
           releaseName: "Version ${{ github.ref_name }}"
