@@ -52,8 +52,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: v1.9.4
-          releaseName: "BotMonster v1.9.4"
+          tagName: v1.9.5
+          releaseName: "BotMonster v1.9.5"
           releaseBody: "New release of the BotMonster AI Trading Terminal."
           releaseDraft: false
           prerelease: false
