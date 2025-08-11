@@ -394,10 +394,7 @@ const LightweightChart: React.FC<LightweightChartProps> = ({ data, backtestCandl
         const candleSeries = candleSeriesRef.current;
         if (!candleSeries) return;
         
-        // FIX #1: Prevent chart from clearing on transient empty data
-        if (processedData && processedData.length > 0) {
-            candleSeries.setData(processedData.map(d => ({ time: (d.time / 1000) as UTCTimestamp, open: d.open, high: d.high, low: d.low, close: d.close })));
-        }
+        candleSeries.setData(processedData.map(d => ({ time: (d.time / 1000) as UTCTimestamp, open: d.open, high: d.high, low: d.low, close: d.close })));
 
         // FIX #2: Make indicator visibility strategy-aware
         const isIndicatorActive = (id: keyof IndicatorSettings) => !!indicatorSettings[id] && activeStrategy.indicatorConfig.some(ind => ind.id === id);
