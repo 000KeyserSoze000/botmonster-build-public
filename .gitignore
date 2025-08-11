@@ -1,24 +1,20 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# Node / JS
+node_modules/
+dist/
+build/
 
-node_modules
-dist
-dist-ssr
-*.local
+# Tauri / Rust
+/target/
+/src-tauri/target/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Config sensibles
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.jks
+
+# Cache / OS
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
