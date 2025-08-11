@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useAppStore } from '../store/useAppStore';
 import type { TradingMode } from '../types';
@@ -110,7 +109,7 @@ const Header: React.FC = () => {
     const toggleMobileRightPanel = useAppStore(state => state.toggleMobileRightPanel);
     const toggleMobileBottomPanel = useAppStore(state => state.toggleMobileBottomPanel);
     
-    const appVersion = "1.9.6"; // Hardcoded version to fix Vercel build issue
+    const appVersion = "1.9.7"; // Hardcoded version to fix Vercel build issue
 
     return (
         <header className={`flex items-center justify-between p-2 md:p-3 bg-zinc-950/80 backdrop-blur-sm shadow-md h-16 flex-shrink-0 z-20 border-b transition-colors duration-300 ${
