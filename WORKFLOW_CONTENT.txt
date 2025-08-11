@@ -7,8 +7,10 @@ on:
 
 jobs:
   release:
+    # Use minimal permissions for security
     permissions:
-      contents: write # This is required to create a release
+      contents: write
+      
     strategy:
       fail-fast: false
       matrix:
@@ -23,31 +25,35 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+          # IMPORTANT: Do NOT enable caching here. It's the source of EINTEGRITY errors.
+          # cache: 'npm' # <--- This line is intentionally removed.
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
-      # This is required for the Tauri build on Ubuntu
-      - name: Install dependencies (Ubuntu only)
+      - name: Install Ubuntu dependencies
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf libgtk-3-dev
+          sudo apt-get install -y \
+            libwebkit2gtk-4.0-dev \
+            libappindicator3-dev \
+            librsvg2-dev \
+            patchelf \
+            libgtk-3-dev
 
-      - name: Clean Install Frontend Dependencies
+      - name: Install Frontend Dependencies (Clean)
         run: |
           npm cache clean --force
-          npm ci --no-cache
+          npm ci
 
       - name: Build and Release Tauri App
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # tauri-action automatically reads the version from tauri.conf.json
-          # and creates a release based on the git tag.
           tagName: ${{ github.ref_name }}
-          releaseName: "BotMonster v__VERSION__"
-          releaseBody: "New release of the BotMonster AI Trading Terminal. Download the appropriate installer for your system below."
+          releaseName: "BotMonster ${{ github.ref_name }}"
+          releaseBody: "New release of the BotMonster AI Trading Terminal."
           releaseDraft: false
           prerelease: false
