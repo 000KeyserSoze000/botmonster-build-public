@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "BotMonster",
-    "version": "1.7.8"
+    "version": "1.8.2"
   },
   "tauri": {
     "allowlist": {
@@ -31,9 +31,6 @@
       "shell": {
         "all": false,
         "open": true
-      },
-      "updater": {
-        "all": true
       },
       "process": {
         "relaunch": true
@@ -76,8 +73,8 @@
       "csp": null
     },
     "updater": {
-      "active": true,
-      "dialog": true,
+      "active": false,
+      "dialog": false,
       "endpoints": [
         "https://api.github.com/repos/000KeyserSoze000/botmonsterapp/releases/latest"
       ],
