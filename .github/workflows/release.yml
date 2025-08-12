@@ -41,6 +41,8 @@ jobs:
             libgtk-3-dev
 
       - name: Install Frontend Dependencies (Resilient)
+        # Force bash shell on all platforms to ensure syntax compatibility
+        shell: bash
         run: |
           # Force the official NPM registry to bypass any corrupted regional mirrors/proxies
           npm config set registry https://registry.npmjs.org/
@@ -60,8 +62,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: v2.0.2
-          releaseName: "BotMonster v2.0.2"
+          tagName: v2.0.3
+          releaseName: "BotMonster v2.0.3"
           releaseBody: "New release of the BotMonster AI Trading Terminal."
           releaseDraft: false
           prerelease: false
