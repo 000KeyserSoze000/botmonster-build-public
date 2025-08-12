@@ -20,17 +20,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
           run_install: false
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
@@ -46,29 +46,16 @@ jobs:
             patchelf \
             libgtk-3-dev
 
-      - name: Clean, Configure, and Install Dependencies
-        shell: bash
-        run: |
-          # Force official registry to bypass any corrupted regional mirrors/proxies
-          pnpm config set registry https://registry.npmjs.org/
-          
-          # Clean existing installation artifacts to ensure a fresh start
-          rm -rf node_modules
-          rm -f pnpm-lock.yaml
-          
-          # Clear pnpm's global cache, ignoring errors if the cache doesn't exist
-          pnpm store prune || true
-          
-          # Install dependencies and regenerate a clean pnpm-lock.yaml on the fly
-          pnpm install
+      - name: Install Frontend Dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build and Release Tauri App
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: v2.1.3
-          releaseName: "BotMonster v2.1.3"
+          tagName: v2.1.4
+          releaseName: "BotMonster v2.1.4"
           releaseBody: "New release of the BotMonster AI Trading Terminal."
           releaseDraft: false
           prerelease: false
