@@ -25,11 +25,11 @@ jobs:
         with:
           version: 8
           
-      - name: Setup Node.js
+      - name: Setup Node.js with pnpm caching
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          # The problematic 'cache: pnpm' has been REMOVED to prevent integrity errors.
+          cache: 'pnpm'
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
@@ -45,16 +45,16 @@ jobs:
             patchelf \
             libgtk-3-dev
 
-      - name: Install Frontend dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install Frontend Dependencies
+        run: pnpm install
 
       - name: Build and Release Tauri App
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: v2.1.8
-          releaseName: "BotMonster v2.1.8"
+          tagName: v2.2.0
+          releaseName: "BotMonster v2.2.0"
           releaseBody: "New release of the BotMonster AI Trading Terminal."
           releaseDraft: false
           prerelease: false

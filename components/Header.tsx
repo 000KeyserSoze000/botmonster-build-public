@@ -6,6 +6,7 @@ import TradingModeSelector from './TradingModeSelector';
 import { useTranslation } from '../hooks/useTranslation';
 import ApiStatusIndicator from './ApiStatusIndicator';
 import MarketSessionsIndicator from './MarketSessionsIndicator';
+import { useAppVersion } from '../hooks/useAppVersion';
 
 const LiveStatusIndicator: React.FC = () => {
     const t = useTranslation();
@@ -86,6 +87,7 @@ const MasterSwitch: React.FC = () => {
 
 const Header: React.FC = () => {
     const t = useTranslation();
+    const appVersion = useAppVersion();
     const timeframes = ['1m', '5m', '15m', '30m', '1H', '4H', '1D', '1W'];
     const {
         activeTimeframe,
@@ -108,8 +110,6 @@ const Header: React.FC = () => {
     const toggleMobileLeftPanel = useAppStore(state => state.toggleMobileLeftPanel);
     const toggleMobileRightPanel = useAppStore(state => state.toggleMobileRightPanel);
     const toggleMobileBottomPanel = useAppStore(state => state.toggleMobileBottomPanel);
-    
-    const appVersion = "2.1.8"; // Hardcoded version
 
     return (
         <header className={`flex items-center justify-between p-2 md:p-3 bg-zinc-950/80 backdrop-blur-sm shadow-md h-16 flex-shrink-0 z-20 border-b transition-colors duration-300 ${
@@ -120,6 +120,7 @@ const Header: React.FC = () => {
                 <div className="flex items-baseline gap-2 text-xl font-bold text-sky-500">
                     <CpuChipIcon className="w-7 h-7" />
                     <h1 className="hidden sm:inline">BotMonster</h1>
+                    {appVersion && <span className="text-xs font-mono text-zinc-500 bg-zinc-800 px-1.5 py-0.5 rounded-md">v{appVersion}</span>}
                 </div>
                 <div className="flex items-center gap-2">
                     <button 
