@@ -369,7 +369,7 @@ packages:
         optional: true
       sass:
         optional: true
-      stylus:ac
+      stylus:
         optional: true
       sugarss:
         optional: true
