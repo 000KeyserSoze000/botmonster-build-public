@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "BotMonster",
-    "version": "2.2.9"
+    "version": "2.3.0"
   },
   "tauri": {
     "allowlist": {
@@ -66,11 +66,14 @@
         "timestampUrl": ""
       }
     },
+    "security": {
+      "csp": null
+    },
     "updater": {
       "active": true,
       "dialog": true,
       "endpoints": [
-        "https://example.com/update.json"
+        "https://github.com/tauri-apps/tauri-action/releases/latest/download/updater.json"
       ],
       "pubkey": "UNUSED_DURING_CI_WILL_BE_REPLACED"
     },
