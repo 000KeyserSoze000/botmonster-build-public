@@ -32,7 +32,7 @@ jobs:
         uses: pnpm/action-setup@v3
         with:
           version: 8
-          run_install: false # Nous gérons l'installation manuellement
+          run_install: false
 
       - name: Install Ubuntu dependencies
         if: matrix.platform == 'ubuntu-22.04'
@@ -49,24 +49,14 @@ jobs:
         shell: bash
         run: |
           echo "--- Starting Defensive Dependency Installation ---"
-          
-          # Étape 1: Forcer l'utilisation du registre npm officiel (bonne pratique en CI)
           pnpm config set registry https://registry.npmjs.org/
-          
-          # Étape 2: Purger le cache pnpm. Le "|| true" assure que le job ne plante pas si le cache est déjà vide.
           echo "Pruning pnpm store..."
           pnpm store prune || true
-          
-          # Étape 3: Supprimer les artefacts potentiellement conflictuels des builds précédents
           echo "Cleaning up old artifacts..."
           rm -f pnpm-lock.yaml
           rm -rf node_modules
-          
-          # Étape 4: Installer les dépendances. pnpm va générer un nouveau lockfile à partir de package.json.
-          # L'option --no-frozen-lockfile est explicite pour s'assurer qu'un nouveau lockfile est créé si nécessaire.
           echo "Installing dependencies and generating a fresh lockfile..."
           pnpm install --no-frozen-lockfile
-          
           echo "--- Defensive Installation Complete ---"
 
       - name: Build and Release Tauri App
@@ -79,5 +69,8 @@ jobs:
           releaseBody: "New release of the BotMonster AI Trading Terminal."
           releaseDraft: false
           prerelease: false
+          projectPath: .
+          includeDebug: false
           includeRelease: true
           includeUpdaterJson: true
+          updaterJsonKeepUniversal: false
