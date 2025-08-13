@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "BotMonster",
-    "version": "2.2.7"
+    "version": "2.2.8"
   },
   "tauri": {
     "allowlist": {
@@ -71,7 +71,8 @@
       "dialog": true,
       "endpoints": [
         "https://example.com/update.json"
-      ]
+      ],
+      "pubkey": "UNUSED_DURING_CI_WILL_BE_REPLACED"
     },
     "windows": [
       {
