@@ -1,5 +1,4 @@
 {
-  "$schema": "../../node_modules/@tauri-apps/cli/schema.json",
   "build": {
     "beforeBuildCommand": "pnpm build",
     "beforeDevCommand": "pnpm dev",
@@ -8,7 +7,7 @@
   },
   "package": {
     "productName": "BotMonster",
-    "version": "2.2.5"
+    "version": "2.2.6"
   },
   "tauri": {
     "allowlist": {
@@ -54,24 +53,20 @@
       "identifier": "com.botmonster.dev",
       "longDescription": "",
       "macOS": {
-        "entitlements": null,
         "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
+        "frameworks": []
       },
       "resources": [],
       "shortDescription": "",
-      "targets": "all",
+      "targets": [
+        "all"
+      ],
       "windows": {
-        "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
         "timestampUrl": ""
       }
     },
-    "security": {
-      "csp": null
-    },
+    "security": {},
     "updater": {
       "active": true,
       "dialog": true,
