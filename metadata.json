@@ -1,0 +1,5 @@
+{
+  "name": "Copy of botmonster-tauri",
+  "description": "Une application de bureau de base construite avec React, TypeScript et Tailwind CSS, conçue pour être intégrée avec Tauri. Ce projet sert de point de départ simple pour développer des applications de bureau multiplateformes avec des technologies web.",
+  "requestFramePermissions": []
+}
