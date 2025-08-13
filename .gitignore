@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 # Logs
 logs
+=======
+# General
+.DS_Store
+>>>>>>> 5611a383835355478ce2f9664b79ce8c0d75787a
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+<<<<<<< HEAD
 lerna-debug.log*
 
 node_modules
@@ -22,3 +28,17 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+=======
+pnpm-lock.yaml
+
+# Node
+node_modules
+dist
+dist-ssr
+.npm
+.pnpm-store
+
+# Tauri
+/src-tauri/target
+/src-tauri/Cargo.lock
+>>>>>>> 5611a383835355478ce2f9664b79ce8c0d75787a

@@ -1,0 +1,19 @@
+[package]
+name = "botmonster-ai-trading-terminal"
+version = "2.4.0"
+description = "A sophisticated order flow trading software for Binance Spot."
+authors = ["you"]
+license = ""
+repository = ""
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "1.6", features = [] }
+
+[dependencies]
+tauri = { version = "1.6", features = ["fs-read-file", "fs-write-file", "fs-create-dir", "notification-all", "path-all", "process-relaunch", "shell-open", "updater"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
