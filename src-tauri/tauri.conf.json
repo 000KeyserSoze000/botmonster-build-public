@@ -1,13 +1,12 @@
 {
   "build": {
-    "beforeBuildCommand": "pnpm --prefix .. build",
     "beforeDevCommand": "pnpm --prefix .. dev",
     "devPath": "http://localhost:5173",
     "distDir": "../dist"
   },
   "package": {
     "productName": "BotMonster",
-    "version": "2.3.6"
+    "version": "2.3.7"
   },
   "tauri": {
     "allowlist": {
