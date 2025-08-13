@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "BotMonster",
-    "version": "2.3.2"
+    "version": "2.3.3"
   },
   "tauri": {
     "allowlist": {
@@ -62,7 +62,7 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": "default-src 'self'"
     },
     "updater": {
       "active": true,
