@@ -1,6 +1,6 @@
 [package]
 name = "botmonster-ai-trading-terminal"
-version = "2.3.8"
+version = "2.3.9"
 description = "A sophisticated order flow trading software for Binance Spot."
 authors = ["you"]
 license = ""
